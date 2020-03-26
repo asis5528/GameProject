@@ -1,0 +1,12 @@
+# ninja log v5
+4	726	606515531	CMakeFiles/native-lib.dir/cpp/native-lib.cpp.o	12775743438215a4
+95	4432	606327318	CMakeFiles/native-lib.dir/cpp/objloader.cpp.o	eddce47a03ac812d
+1	4549	606327318	CMakeFiles/native-lib.dir/cpp/vboindexer.cpp.o	8c4b5e82b649d088
+2087	2331	606850329	E:/GameProject/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	d0ba786ba0ab5634
+5	2086	606850328	CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o	31b7db71ef510cf
+65	4366	606938218	CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o	31b7db71ef510cf
+4366	7168	606938221	E:/GameProject/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	d0ba786ba0ab5634
+4	2746	606938284	CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o	31b7db71ef510cf
+2746	3208	606938284	E:/GameProject/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	d0ba786ba0ab5634
+7	2626	606938551	CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o	31b7db71ef510cf
+2626	3177	606938552	E:/GameProject/app/build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	d0ba786ba0ab5634

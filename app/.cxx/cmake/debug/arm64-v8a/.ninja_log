@@ -1,0 +1,12 @@
+# ninja log v5
+53	1206	606515529	CMakeFiles/native-lib.dir/cpp/native-lib.cpp.o	ea33f84b692b0bb0
+706	11814	606327309	CMakeFiles/native-lib.dir/cpp/vboindexer.cpp.o	4050f0b24abede9e
+0	11836	606327309	CMakeFiles/native-lib.dir/cpp/objloader.cpp.o	78b37af6ed1bbfdb
+5	2084	606850326	CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o	339617392a65e8d7
+2084	2517	606850326	E:/GameProject/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	94a1aa8b903e5ed9
+137	24380	606938208	CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o	339617392a65e8d7
+24380	29298	606938213	E:/GameProject/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	94a1aa8b903e5ed9
+31	2688	606938280	CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o	339617392a65e8d7
+2689	3408	606938281	E:/GameProject/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	94a1aa8b903e5ed9
+6	2864	606938547	CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o	339617392a65e8d7
+2864	3489	606938548	E:/GameProject/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so	94a1aa8b903e5ed9

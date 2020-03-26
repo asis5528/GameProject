@@ -1,0 +1,6 @@
+# ninja log v5
+66	1114	606516279	CMakeFiles/native-lib.dir/cpp/native-lib.cpp.o	434c0928a3bf532f
+141	1561	606516280	CMakeFiles/native-lib.dir/cpp/vboindexer.cpp.o	a858da4f6c9d71b0
+85	1987	606516280	CMakeFiles/native-lib.dir/cpp/objloader.cpp.o	a608d974e3eee911
+28	2291	606516280	CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o	7984196b1d25ff18
+2292	3174	606516281	E:/GameProject/app/build/intermediates/cmake/release/obj/x86/libnative-lib.so	c9ce0ccfb1dc0c28
