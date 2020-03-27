@@ -19,66 +19,70 @@
 #include "Renderer/ModelLoader.h"
 #include "Renderer/Camera.h"
 #include "Object/Object.h"
-
-
+#include "Renderer/FBO.h"
+#include "Scene/Scene.h"
 
 using namespace glm;
 
-Shader shader;
 float tim;
 mat4 proj;
-Shader terrainShader;
-Shader treeShader;
-Model model;
-Model terrain;
-Model tree;
+
+float width,height;
 Camera cam;
-ObjectInit tr;
-ObjectInit tre;
-std::vector<Object> objects;
+
+
+Scene scene;
+FBO framebuffer;
+FBO fbo2;
+Quad quad;
+Quad quad1;
 void Renderer::init() {
 
 
 
 
-    cam = Camera(glm::vec3(0.0,-0.9,0.0),proj);
-    TransformData data;
-    data.Position = vec3(0.0,0.0,0.0);
-    data.Rotation = vec3(0.0);
-    data.Scale = vec3(0.2);
-     tr = ObjectInit("Models/terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag",data,"Textures/terrain.png");
-     objects.push_back(tr.object);
-    tre = ObjectInit("Models/tree.obj","Shaders/tree.vert","Shaders/tree.frag",data,"Textures/tree.png");
-    objects.push_back(tre.object);
-    glEnable(GL_DEPTH_TEST);
 
+
+
+   scene = Scene(Camera(glm::vec3(0.0,-0.9,0.0),proj));
+    Shader quadShader = Shader("Shaders/quad.vert","Shaders/quad.frag");
+    framebuffer = FBO(width,height,2);
+    fbo2 = FBO(width/15,height/15);
+
+    quad = Quad(quadShader);
+    quad.setTexture(framebuffer.textures[0]);
+    quad.setTexture(framebuffer.textures[1]);
+
+    quad1 = Quad(quadShader);
+    quad1.setTexture(fbo2.textures[0]);
 
 }
 
 void Renderer::render() {
-    cam.pos.z=3.0;
-    cam.pos.y=1.6;
-    cam.update();
+    //cam.pos.z=3.0;
+    scene.cam.pos.y=1.6;
+    scene.cam.pos.z = sin(tim*0.5)*3.0;
+    scene.cam.pos.x = cos(tim*0.5)*3.0;
+    scene.cam.update();
     tim+=0.07;
-    unsigned int fbo;
-    glGenBuffers(1,&fbo);
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT );
-    glm::mat4 mod = glm::mat4(1.0);
-    mod = glm::scale(mod,glm::vec3(0.2,0.2,0.2));
-    time+=0.01;
 
 
-   for(Object object:objects){
-       object.Draw(cam);
-   }
+    framebuffer.bind();
+    scene.Draw();
+    framebuffer.ubind();
+    fbo2.bind();
+    quad.Draw();
+    fbo2.ubind();
+    glViewport(0,0,width,height);
+     quad1.Draw();
 }
 
 void Renderer::surfaceChanged(int w,int h) {
      proj = glm::perspective(glm::radians(90.0f),(float)w/(float)h,0.02f,100.f);
      cam.projMatrix = proj;
      cam.update();
-
+    width = w;
+    height = h;
     glViewport(0,0,w,h);
 
 

@@ -54,7 +54,6 @@ public:
         if(model.texture.id){
             glActiveTexture(GL_TEXTURE0);
             glUniform1i(glGetUniformLocation(this->shader.ID, "tex"), 0);
-
             glBindTexture(GL_TEXTURE_2D, this->model.texture.id);
         }
 

@@ -1,2 +1,30 @@
 ninja: Entering directory `E:\GameProject\app\.cxx\cmake\debug\arm64-v8a'
-ninja: no work to do.
+[1/2] Building CXX object CMakeFiles/native-lib.dir/cpp/Renderer.cpp.o
+In file included from E:/GameProject/app/src/main/cpp/Renderer.cpp:23:
+In file included from E:/GameProject/app/src/main/cpp/Scene/Scene.h:8:
+E:/GameProject/app/src/main/cpp/Scene/PreModel.h:13:36: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit tr = ObjectInit("Models/terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag",data,"Textures/terrain.png");
+                                   ^
+E:/GameProject/app/src/main/cpp/Scene/PreModel.h:13:57: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit tr = ObjectInit("Models/terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag",data,"Textures/terrain.png");
+                                                        ^
+E:/GameProject/app/src/main/cpp/Scene/PreModel.h:13:80: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit tr = ObjectInit("Models/terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag",data,"Textures/terrain.png");
+                                                                               ^
+E:/GameProject/app/src/main/cpp/Scene/PreModel.h:13:108: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit tr = ObjectInit("Models/terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag",data,"Textures/terrain.png");
+                                                                                                           ^
+E:/GameProject/app/src/main/cpp/Scene/PreModel.h:15:37: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit tre = ObjectInit("Models/tree.obj","Shaders/tree.vert","Shaders/tree.frag",data,"Textures/tree.png");
+                                    ^
+E:/GameProject/app/src/main/cpp/Scene/PreModel.h:15:55: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit tre = ObjectInit("Models/tree.obj","Shaders/tree.vert","Shaders/tree.frag",data,"Textures/tree.png");
+                                                      ^
+E:/GameProject/app/src/main/cpp/Scene/PreModel.h:15:75: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit tre = ObjectInit("Models/tree.obj","Shaders/tree.vert","Shaders/tree.frag",data,"Textures/tree.png");
+                                                                          ^
+E:/GameProject/app/src/main/cpp/Scene/PreModel.h:15:100: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+        ObjectInit tre = ObjectInit("Models/tree.obj","Shaders/tree.vert","Shaders/tree.frag",data,"Textures/tree.png");
+                                                                                                   ^
+8 warnings generated.
+[2/2] Linking CXX shared library E:\GameProject\app\build\intermediates\cmake\debug\obj\arm64-v8a\libnative-lib.so
