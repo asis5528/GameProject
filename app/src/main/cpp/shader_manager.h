@@ -39,7 +39,7 @@ public:
         std::istringstream iss(vShaderCode);
 
         while(std::getline(iss,line)){
-        __android_log_print(ANDROID_LOG_DEBUG,"print","%s",line.c_str());
+
 
         }
         vShaderCode[fileLength] = 0;

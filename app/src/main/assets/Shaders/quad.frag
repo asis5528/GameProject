@@ -13,6 +13,7 @@ void main()
     st = fract(st*3.);
     st-=vec2(0.5);
     float c = smoothstep(0.2,0.1,length(st));
-    FragColor= texture(tex0,uv);
+    FragColor= (texture(tex0,uv)*2.3+texture(tex1,uv)*0.6)*0.5;
+    FragColor = texture(tex1,uv)+texture(tex0,uv)*1.5;
 }
 

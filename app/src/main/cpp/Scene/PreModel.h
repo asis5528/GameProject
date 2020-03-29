@@ -9,11 +9,15 @@ class PreModel{
 public:
     std::vector<Object> objects;
     PreModel(){
-        TransformData data = { vec3(0.0,0.0,0.0),vec3(0.0),vec3(0.2)};
-        ObjectInit tr = ObjectInit("Models/terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag",data,"Textures/terrain.png");
-        objects.push_back(tr.object);
-        ObjectInit tre = ObjectInit("Models/tree.obj","Shaders/tree.vert","Shaders/tree.frag",data,"Textures/tree.png");
-        objects.push_back(tre.object);
+
+
+        ObjectInit terrain = ObjectInit("terrain.obj","Shaders/terrain.vert","Shaders/terrain.frag","Textures/terrain.png");
+        objects.push_back(terrain.object);
+        ObjectInit tree = ObjectInit("tree.obj","Shaders/terrain.vert","Shaders/terrain.frag","Textures/tree.png");
+        objects.push_back(tree.object);
+
+            ObjectInit bill = ObjectInit("bill.obj","Shaders/tree.vert","Shaders/tree.frag","Textures/billBoard.png");
+            objects.push_back(bill.object);
     }
 
 };

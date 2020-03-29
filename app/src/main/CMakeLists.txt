@@ -20,7 +20,7 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        cpp/native-lib.cpp cpp/Renderer.cpp cpp/vboindexer.cpp cpp/objloader.cpp)
+        cpp/native-lib.cpp cpp/Renderer.cpp cpp/Loader/vboindexer.cpp cpp/Loader/objloader.cpp)
 #add_library(libassimp STATIC IMPORTED)
 #set_target_properties(libassimp PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/jni/Assimp_libs/cmake/release/${ANDROID_ABI}/libassimp.a)
 

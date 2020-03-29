@@ -9,18 +9,20 @@
 #include <android/asset_manager_jni.h>
 #include <string>
 #include <vector>
+
 #include "shader_manager.h"
-#include "OBJFileLoader.h"
 #include <glm/gtx/component_wise.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "objloader.hpp"
-#include "vboindexer.hpp"
+#include "Loader/objloader.hpp"
+#include "Loader/vboindexer.hpp"
 #include "Renderer/Mesh.h"
 #include "Renderer/ModelLoader.h"
 #include "Renderer/Camera.h"
+#include "Loader/load.h"
 #include "Object/Object.h"
 #include "Renderer/FBO.h"
 #include "Scene/Scene.h"
+
 
 using namespace glm;
 
@@ -31,11 +33,14 @@ float width,height;
 Camera cam;
 
 
-Scene scene;
+Scene *scene;
 FBO framebuffer;
 FBO fbo2;
+FBO fbo3;
 Quad quad;
 Quad quad1;
+Quad quad2;
+
 void Renderer::init() {
 
 
@@ -43,38 +48,73 @@ void Renderer::init() {
 
 
 
-
-   scene = Scene(Camera(glm::vec3(0.0,-0.9,0.0),proj));
+  // Load("g");
+   scene = new Scene(Camera(glm::vec3(0.0,-0.9,0.0),proj));
     Shader quadShader = Shader("Shaders/quad.vert","Shaders/quad.frag");
+    Shader vShader =  Shader("Shaders/Vblur.vert","Shaders/blur.frag");
+    Shader hShader =  Shader("Shaders/Hblur.vert","Shaders/blur.frag");
     framebuffer = FBO(width,height,2);
-    fbo2 = FBO(width/15,height/15);
 
-    quad = Quad(quadShader);
-    quad.setTexture(framebuffer.textures[0]);
+    fbo2 = FBO(width/2,height/2);
+
+    fbo3 = FBO(width/2,height/2);
+
+    quad = Quad(hShader);
     quad.setTexture(framebuffer.textures[1]);
+    quad.setTexture(framebuffer.textures[0]);
 
-    quad1 = Quad(quadShader);
+    quad1 = Quad(vShader);
     quad1.setTexture(fbo2.textures[0]);
+
+    quad2 = Quad(quadShader);
+    quad2.setTexture(fbo3.textures[0]);
+    quad2.setTexture(framebuffer.textures[0]);
+
+    Object *bill = scene->getObject("bill");
+    bill->model.LoadTexture("Textures/bill2.png");
 
 }
 
 void Renderer::render() {
     //cam.pos.z=3.0;
-    scene.cam.pos.y=1.6;
-    scene.cam.pos.z = sin(tim*0.5)*3.0;
-    scene.cam.pos.x = cos(tim*0.5)*3.0;
-    scene.cam.update();
-    tim+=0.07;
+    scene->cam.pos.y=7.6;
+    scene->cam.pos.z = sin(tim*0.2)*13.0;
+    scene->cam.pos.x = cos(tim*0.2)*13.0;
+    scene->cam.update();
+    tim+=0.02;
+    int ind = scene->getIndex("bill");
+    //scene.objects[ind].setPosition(vec3(tim,0.,0.));
+   //scene.getObject("bill",scene.objects).setPosition(vec3(tim,0.,0.));
+   Object *bill = scene->getObject("bill");
+   bill->shader.use();
+   bill->shader.setFloat("fac",sin(tim*9.)+0.5);
+   //bill->setPosition(vec3(tim,0.,0.));
 
+    //__android_log_print(ANDROID_LOG_INFO,"position","%f",bill->data.Position.x);
+     //bill->data.Position.x+=0.01;
+     bill->data.Rotation.y+=0.01;
 
+    // bill->updateTransform();
+    //scene.objects[2].setPosition(vec3(tim,0.,0.));
+    //bil.updateTransform();
     framebuffer.bind();
-    scene.Draw();
+    scene->Draw();
     framebuffer.ubind();
+
     fbo2.bind();
+    quad.shader.use();
+    quad.shader.setFloat("width",fbo2.width);
     quad.Draw();
     fbo2.ubind();
+
+    fbo3.bind();
+    quad1.shader.use();
+    quad1.shader.setFloat("height",fbo3.height);
+    quad1.Draw();
+    fbo3.ubind();
+
     glViewport(0,0,width,height);
-     quad1.Draw();
+    quad2.Draw();
 }
 
 void Renderer::surfaceChanged(int w,int h) {

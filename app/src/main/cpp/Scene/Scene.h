@@ -12,7 +12,9 @@ public:
     std::vector<Object> objects;
     Scene(Camera camera){
         cam = camera;
-        objects = PreModel().objects;
+        {
+            objects = PreModel().objects;
+        }
     }
     Scene(){
 
@@ -20,13 +22,31 @@ public:
 
     void Draw(){
         glEnable(GL_DEPTH_TEST);
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT );
         for(Object object:objects){
             object.Draw(cam);
 
         }
 
+        }
+     Object *getObject(string name){
+        //std::vector<Object> *o = obj;
+         for(int i = 0;i<this->objects.size();i++){
+             if(objects[i].name==name){
+                 return &this->objects[i];
+                 break;
+             }
+         }
+
+    }
+        int getIndex(string name){
+            for(int i = 0;i<this->objects.size();i++){
+                if(objects[i].name==name){
+                    return i;
+                    break;
+                }
+            }
     }
 };
 #endif //MY_APPLICATION_SCENE_H

@@ -14,13 +14,15 @@ struct Texture{
 class Model{
     public:
     Mesh mesh;
-    Texture texture;
+    std::vector<Texture> textures;
         Model(char* path){
             std::vector<GLushort> inds;
             std::vector<glm::vec3> verts;
             std::vector<glm::vec2> uv;
             std::vector<glm::vec3> norm;
-            loadOBJ(path,verts,uv,norm);
+            string m = "Models/";
+            m = m+path;
+            loadOBJ(m.c_str(),verts,uv,norm);
 
             std::vector<glm::vec3> indexed_vertices;
             std::vector<glm::vec2> indexed_uvs;
@@ -65,16 +67,17 @@ class Model{
                 format = GL_RGBA;
             }
 
-
-            glGenTextures(1,&texture.id);
-            int k = texture.id;
-            glBindTexture(GL_TEXTURE_2D,texture.id);
+            Texture tex;
+            glGenTextures(1,&tex.id);
+            int k = tex.id;
+            glBindTexture(GL_TEXTURE_2D,tex.id);
             glTexImage2D(GL_TEXTURE_2D,0,format,imgWidth,imgHeight,0,format,GL_UNSIGNED_BYTE,imageBits);
             stbi_image_free(imageBits);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
             glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
             glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+            textures.push_back(tex);
 
 
         }

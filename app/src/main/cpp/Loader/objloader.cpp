@@ -7,17 +7,8 @@
 #include <android/asset_manager.h>
 
 #include "objloader.hpp"
-#include "AssetsLoader.h"
+#include "../AssetsLoader.h"
 
-// Very, VERY simple OBJ loader.
-// Here is a short list of features a real function would provide : 
-// - Binary files. Reading a model should be just a few memcpy's away, not parsing a file at runtime. In short : OBJ is not very great.
-// - Animations & bones (includes bones weights)
-// - Multiple UVs
-// - All attributes should be optional, not "forced"
-// - More stable. Change a line in the OBJ file and it crashes.
-// - More secure. Change another line and you can inject code.
-// - Loading from memory, stream, etc
 
 bool loadOBJ(
         const char * path,
@@ -25,15 +16,13 @@ bool loadOBJ(
         std::vector<glm::vec2> & out_uvs,
         std::vector<glm::vec3> & out_normals
 ){
-    printf("Loading OBJ file %s...\n", path);
+    //printf("Loading OBJ file %s...\n", path);
 
     std::vector<unsigned int> vertexIndices, uvIndices, normalIndices;
     std::vector<glm::vec3> temp_vertices;
     std::vector<glm::vec2> temp_uvs;
     std::vector<glm::vec3> temp_normals;
 
-
-   //
     AAsset* fil = AAssetManager_open(mgr,path, AASSET_MODE_BUFFER);
 
     size_t fileLength = AAsset_getLength(fil);
